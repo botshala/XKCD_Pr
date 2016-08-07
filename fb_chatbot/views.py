@@ -59,8 +59,9 @@ def quote_search(string):
             return text
     return str(quotes_arr[0][0])
 
-def post_facebook_message(fbid, recevied_message):
+def post_facebook_message(fbid, message,type="text"):
 
+    recevied_message=message['text']
     reply_text = recevied_message + '  :)'
     
     try:
@@ -107,6 +108,7 @@ class MyQuoteBotView(generic.View):
     # Post function to handle Facebook messages
     def post(self, request, *args, **kwargs):
         # Converts the text payload into a python dictionary
+        #Try to check request
         incoming_message = json.loads(self.request.body.decode('utf-8'))
         print('\n\n\n\n\n\n\n\n\n\n\n\n\\'+str(incoming_message)+'\n\n\n\n\n\n\n\n\n\n\n\n')
         # Facebook recommends going through every entry since they might send
@@ -117,13 +119,15 @@ class MyQuoteBotView(generic.View):
                 # This might be delivery, optin, postback for other events 
                 if 'message' in message:
                     # Print the message to the terminal
-                    pprint(message)    
+                    pprint(message["message"])    
+                    msg=message["message"]
+
                     #status = requests.post('https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN, headers={"Content-Type": "application/json"},data=json.dumps({"recipient":{"id":message['sender']['id']}, "message":{"text":str(message)}}))
                     #return HttpResponse(str(message))
                     # Assuming the sender only sends text. Non-text messages like stickers, audio, pictures
                     # are sent as attachments and must be handled accordingly. 
-                    #post_facebook_message(message['sender']['id'], message['message']['text'])    
-                    
+                    #post_facebook_message(message['sender']['id'], message['message'])    
+                   ##########IMP IMP #if text in message[0]['message'] and if attachments in
 
         return HttpResponse()    
 
