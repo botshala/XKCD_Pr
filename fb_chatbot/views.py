@@ -74,7 +74,7 @@ def post_facebook_message(fbid, recevied_message):
         else:
             query=query+split_list[0]
         li=quote_search(query)
-        joke_text = 'Yo '+user_details['first_name']+user_details['last_name']+'..! ' + reply_text + '\n' +li
+        joke_text = 'Yo '+user_details['first_name']+' '+ user_details['last_name']+'..! ' + reply_text + '\n' +li
     except:
         joke_text = 'Yo ' + reply_text
 
