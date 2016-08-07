@@ -108,9 +108,7 @@ class MyQuoteBotView(generic.View):
     def post(self, request, *args, **kwargs):
         # Converts the text payload into a python dictionary
         incoming_message = json.loads(self.request.body.decode('utf-8'))
-        status = requests.post('https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN, headers={"Content-Type": "application/json"},data=json.dumps({"recipient":{"id":message['sender']['id']}, "message":{"text":str(incoming_message)}}))
-        return HttpResponse()
-        
+        print('\n\n\n\n\n\n\n\n\n\n\n\n\\'+str(incoming_message)+'\n\n\n\n\n\n\n\n\n\n\n\n')
         # Facebook recommends going through every entry since they might send
         # multiple messages in a single call during high load
         for entry in incoming_message['entry']:
@@ -124,7 +122,7 @@ class MyQuoteBotView(generic.View):
                     #return HttpResponse(str(message))
                     # Assuming the sender only sends text. Non-text messages like stickers, audio, pictures
                     # are sent as attachments and must be handled accordingly. 
-                    post_facebook_message(message['sender']['id'], message['message']['text'])    
+                    #post_facebook_message(message['sender']['id'], message['message']['text'])    
                     
 
         return HttpResponse()    
