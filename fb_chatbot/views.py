@@ -65,7 +65,7 @@ def post_facebook_message(fbid, recevied_message):
     
     try:
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid 
-        user_details_params = {'fields':'first_name,last_name,profile_pic,picture', 'access_token':PAGE_ACCESS_TOKEN} 
+        user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN} 
         user_details = requests.get(user_details_url, user_details_params).json() 
         split_list=recevied_message.split('*')
         query=''
