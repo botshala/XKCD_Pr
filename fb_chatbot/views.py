@@ -61,8 +61,8 @@ def quote_search(string):
 
 def post_facebook_message(fbid, message):
 
-    type=''
-    if attachments in message:
+    type='text'
+    if 'attachments' in message:
         type='attachments'
     else:
         type='text'
