@@ -117,9 +117,10 @@ class MyQuoteBotView(generic.View):
                 if 'message' in message:
                     # Print the message to the terminal
                     pprint(message)    
+                    return HttpResponse(str(message))
                     # Assuming the sender only sends text. Non-text messages like stickers, audio, pictures
                     # are sent as attachments and must be handled accordingly. 
-                    post_facebook_message(message['sender']['id'], message['message']['text'])    
+                   ## post_facebook_message(message['sender']['id'], message['message']['text'])    
                     
 
         return HttpResponse()    
