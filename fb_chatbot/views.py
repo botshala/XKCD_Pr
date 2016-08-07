@@ -85,7 +85,7 @@ def post_facebook_message(fbid, message):
     if type=='attachments':
         try:
             print('\n\n\n\n\n\n\n\n\n\n'+'HERE')
-            print('\n'+str(message["attachments"][0]["payload"])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+            print('\n'+str(message["attachments"][0]["payload"]['url'])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
             img_url=message["attachments"][0]["payload"]["url"]
         except:
