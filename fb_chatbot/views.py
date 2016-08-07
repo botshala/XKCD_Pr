@@ -84,11 +84,12 @@ def post_facebook_message(fbid, message):
     
     if type=='attachments':
         try:
+            print(message["attachments"]+'\n\n')
             print('\n\n\n\n\n\n\n\n\n\n'+'HERE')
             print('\n'+str(message["attachments"][0]["payload"]['url'])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
-            img_url=str(message["attachments"][0]["payload"]['url'])
-            print(img_url)
+            img_url=str(message["attachments"][0]["payload"]['url']) +'/'
+            print("IMG URL" + img_url)
         except:
             pass
         response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
