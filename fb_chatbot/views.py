@@ -49,7 +49,10 @@ def post_facebook_message(fbid, recevied_message):
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid 
         user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN} 
         user_details = requests.get(user_details_url, user_details_params).json() 
-        joke_text = 'Yo '+user_details['first_name']+'..! ' + reply_text +'\n' +user_details['profile_pic']
+        li=return_random_quote()
+        joke_text = 'Yo '+user_details['first_name']+'..! ' + reply_text 
+        for i in li:
+            joke_text=joke_text + '\n' +str(i)
     except:
         joke_text = 'Yo ' + reply_text
 
@@ -100,7 +103,11 @@ def return_random_quote():
 
 def index(request):
     #print test()
-    return HttpResponse("Hello World"+' \n'+str(return_random_quote()))
+    li=return_random_quote()
+    stri=''
+    for i in li:
+            stri=stri + '\n' +str(i)
+    return HttpResponse("Hello World"+' \n'+ stri)
 
 def test():
     post_facebook_message('abhishek.sukumar.1','test message')
