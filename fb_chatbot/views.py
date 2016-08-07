@@ -56,7 +56,7 @@ def quote_search(string):
     for text,author in quotes_arr:
         if string in author.lower():
             return text
-    return quotes_arr[0]
+    return str(quotes_arr[0][0])
 
 def post_facebook_message(fbid, recevied_message):
 
@@ -67,9 +67,7 @@ def post_facebook_message(fbid, recevied_message):
         user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN} 
         user_details = requests.get(user_details_url, user_details_params).json() 
         li=quote_search(recevied_message)
-        joke_text = 'Yo '+user_details['first_name']+'..! ' + reply_text + '\n'
-        for i in li:
-            joke_text=joke_text + '\n' +str(i)
+        joke_text = 'Yo '+user_details['first_name']+'..! ' + reply_text + '\n' +li
     except:
         joke_text = 'Yo ' + reply_text
 
