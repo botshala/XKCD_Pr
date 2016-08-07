@@ -84,7 +84,7 @@ def post_facebook_message(fbid, message):
     
     if type=='attachments':
         try:
-            print(message["attachments"]+'\n\n')
+            print(str(message["attachments"])+'\n\n')
             print('\n\n\n\n\n\n\n\n\n\n'+'HERE')
             print('\n'+str(message["attachments"][0]["payload"]['url'])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
