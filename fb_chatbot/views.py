@@ -41,16 +41,33 @@ quotes_arr = [["Life isn’t about getting and having, it’s about giving and b
 ["Every child is an artist.  The problem is how to remain an artist once he grows up.", "Pablo Picasso"]]
 
 
+message_object ={
+    "attachment":{
+    "type":"image",
+    "payload":{
+    #"url":"http://thecatapi.com/api/images/get?format",
+    "url" : "http://worldversus.com/img/ironman.jpg"
+    }
+    }
+}
+def quote_search(string):
+    string=string.lower()
+    random.shuffle(quotes_arr)
+    for text,author in quotes_arr:
+        if string in author.lower():
+            return text
+    return quotes_arr[0]
 
 def post_facebook_message(fbid, recevied_message):
+
     reply_text = recevied_message + '  :)'
-    joke_text=recevied_message
+    
     try:
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid 
         user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN} 
         user_details = requests.get(user_details_url, user_details_params).json() 
-        li=return_random_quote()
-        joke_text = 'Yo '+user_details['first_name']+'..! ' + reply_text 
+        li=quote_search(recevied_message)
+        joke_text = 'Yo '+user_details['first_name']+'..! ' + reply_text + '\n'
         for i in li:
             joke_text=joke_text + '\n' +str(i)
     except:
@@ -107,7 +124,7 @@ def index(request):
     stri=''
     for i in li:
             stri=stri + '\n' +str(i)
-    return HttpResponse("Hello World"+' \n'+ stri)
+    return HttpResponse("Hello World"+' \n'+str(quote_search('Albert')))
 
 def test():
     post_facebook_message('abhishek.sukumar.1','test message')
