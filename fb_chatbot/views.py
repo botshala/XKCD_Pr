@@ -41,13 +41,13 @@ quotes_arr = [["Life isn’t about getting and having, it’s about giving and b
 ["I am not a product of my circumstances. I am a product of my decisions.", "Stephen Covey"],
 ["Every child is an artist.  The problem is how to remain an artist once he grows up.", "Pablo Picasso"]]
 
-
+img_url='https://upload.wikimedia.org/wikipedia/en/e/e0/Iron_Man_bleeding_edge.jpg'
 img_msg ={
     "attachment":{
     "type":"image",
     "payload":{
     #"url":"http://thecatapi.com/api/images/get?format",
-    "url" : "http://worldversus.com/img/ironman.jpg"
+    "url" : img_url
     }
     }
 }
@@ -83,7 +83,12 @@ def post_facebook_message(fbid, message):
     reply_text=reply_text + ' :) '
     
     if type=='attachments':
-        response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":"Joker"}})
+        try:
+            img_url=message["attachments"][0]["payload"]["url"]
+        except:
+            pass
+        response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":joke_text}})
+        
     else:
         recevied_message=message['text']
         split_list=recevied_message.split('*')
