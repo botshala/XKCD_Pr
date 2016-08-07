@@ -67,7 +67,7 @@ class MyQuoteBotView(generic.View):
 
 
 def index(request):
-    print test()
+    #print test()
     return HttpResponse("Hello World")
 
 def test():
