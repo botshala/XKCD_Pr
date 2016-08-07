@@ -119,7 +119,7 @@ class MyQuoteBotView(generic.View):
                 # This might be delivery, optin, postback for other events 
                 if 'message' in message:
                     # Print the message to the terminal
-                    pprint(message["message"])    
+                    print(str(message["message"]))    
                     msg=message["message"]
 
                     #status = requests.post('https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN, headers={"Content-Type": "application/json"},data=json.dumps({"recipient":{"id":message['sender']['id']}, "message":{"text":str(message)}}))
