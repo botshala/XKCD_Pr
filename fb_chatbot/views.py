@@ -87,7 +87,7 @@ def post_facebook_message(fbid, message):
             img_url=message["attachments"][0]["payload"]["url"]
         except:
             pass
-        response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":joke_text}})
+        response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
         
     else:
         recevied_message=message['text']
