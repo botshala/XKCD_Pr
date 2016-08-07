@@ -59,15 +59,31 @@ def quote_search(string):
             return text
     return str(quotes_arr[0][0])
 
-def post_facebook_message(fbid, message,type="text"):
+def post_facebook_message(fbid, message):
 
-    recevied_message=message['text']
-    reply_text = recevied_message + '  :)'
-    
+    type=''
+    if attachments in message:
+        type='attachments'
+    else:
+        type='text'
+    #
+    #reply_text = recevied_message + '  :)'
+    reply_text='Yo'
+    response_msg=''
     try:
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid 
         user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN} 
         user_details = requests.get(user_details_url, user_details_params).json() 
+        reply_text=reply_text + user_details['first_name'] + user_details['last_name']
+        
+    except:
+        reply_text=reply_text + 'Man'
+    reply_text=reply_text + ' :) '
+    
+    if type=='attachments':
+        pass
+    else:
+        recevied_message=message['text']
         split_list=recevied_message.split('*')
         query=''
         if(split_list[0]==''):
@@ -75,22 +91,15 @@ def post_facebook_message(fbid, message,type="text"):
         else:
             query=query+split_list[0]
         li=quote_search(query)
-        joke_text = 'Yo '+user_details['first_name']+' '+ user_details['last_name']+'..! ' + reply_text + '\n' +li +'\n' 
-    except:
-        joke_text = 'Yo ' + reply_text
-
-    
+        joke_text = reply_text + '\n' + li
+        response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":joke_text}})
                    
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
-    text_msg={"text":joke_text}
-    #msg={}
-   # msg.update(text_msg)
-   # msg.update(img_msg)
-    response_msg = json.dumps({"recipient":{"id":fbid}, "message":{"text":joke_text}})
-    response_msg2 =json.dumps({"recipient":{"id":fbid},"message":img_msg})
+   
+   # response_msg2 =json.dumps({"recipient":{"id":fbid},"message":img_msg})
     #response_msg = json.dumps({"recipient":{"id":fbid}, "message":msg})
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg)
-    status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg2)
+    #status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg2)
     pprint(status.json())
 
 
@@ -120,13 +129,13 @@ class MyQuoteBotView(generic.View):
                 if 'message' in message:
                     # Print the message to the terminal
                     print(str(message["message"]))    
-                    msg=message["message"]
+                   # msg=message["message"]
 
                     #status = requests.post('https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN, headers={"Content-Type": "application/json"},data=json.dumps({"recipient":{"id":message['sender']['id']}, "message":{"text":str(message)}}))
                     #return HttpResponse(str(message))
                     # Assuming the sender only sends text. Non-text messages like stickers, audio, pictures
                     # are sent as attachments and must be handled accordingly. 
-                    #post_facebook_message(message['sender']['id'], message['message'])    
+                    post_facebook_message(message['sender']['id'], message['message'])    
                    ##########IMP IMP #if text in message[0]['message'] and if attachments in
 
         return HttpResponse()    
