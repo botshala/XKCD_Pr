@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 
 # Create your views here.
 
-PAGE_ACCESS_TOKEN = 'EAAEhOdh2ddsBAC8xuzzdtZCw9pZB9V3GNQ9ZAzAJROT5aIL4b11HAYVX5ZCmV9NMwiBySZChi27H0Oiymm8SQOe8FdhrwCU54uLf5dwjDzlU1CrA29TMnPZAQfo2tQeyQ3H5f4Efms9p5203UZBUbZADKkFYtcgAGYfJBiRAOvZCuKpIwKbmZCNZA0S'
+PAGE_ACCESS_TOKEN = 'EAAEhOdh2ddsBAEDoF94Wir0bZCLCNNMS11ZCBEg3WPVgd39NbpbBZCFy1licJlwqzpc1piWb5ONnDrvSZAXSBxjMgCrkNuGJjkHK4tLZBRpJZAuYdfvweYzQKvH7W9Vag2iKZAPiajjpXPZAIPg9ohaNweUE9ttrjohir91rmXh8ugC8mkZA4zrWh'
 VERIFY_TOKEN = '9871501397'
 
 
@@ -100,7 +100,7 @@ def return_random_quote():
 
 def index(request):
     #print test()
-    return HttpResponse("Hello World"+' \n '+str(return_random_quote()))
+    return HttpResponse("Hello World"+' \n'+str(return_random_quote()))
 
 def test():
     post_facebook_message('abhishek.sukumar.1','test message')
