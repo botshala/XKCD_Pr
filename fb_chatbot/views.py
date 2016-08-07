@@ -128,7 +128,7 @@ class MyQuoteBotView(generic.View):
         # Converts the text payload into a python dictionary
         #Try to check request
         incoming_message = json.loads(self.request.body.decode('utf-8'))
-        print('\n\n\n\n\n\n\n\n\n\n\n\n\\'+str(incoming_message)+'\n\n\n\n\n\n\n\n\n\n\n\n')
+        #print('\n\n\n\n\n\n\n\n\n\n\n\n\\'+str(incoming_message)+'\n\n\n\n\n\n\n\n\n\n\n\n')
         # Facebook recommends going through every entry since they might send
         # multiple messages in a single call during high load
         for entry in incoming_message['entry']:
@@ -137,7 +137,7 @@ class MyQuoteBotView(generic.View):
                 # This might be delivery, optin, postback for other events 
                 if 'message' in message:
                     # Print the message to the terminal
-                    print(str(message["message"]))    
+                    #print(str(message["message"]))    
                    # msg=message["message"]
 
                     #status = requests.post('https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN, headers={"Content-Type": "application/json"},data=json.dumps({"recipient":{"id":message['sender']['id']}, "message":{"text":str(message)}}))
