@@ -62,10 +62,12 @@ def quote_search(string):
 def post_facebook_message(fbid, message):
 
     type='text'
-    if 'attachments' in message:
-        type='attachments'
-    else:
-        type='text'
+    try:
+        if 'attachments' in message:
+            type='attachments'
+    except:
+        pass
+    
     #
     #reply_text = recevied_message + '  :)'
     reply_text='Yo'
@@ -81,7 +83,7 @@ def post_facebook_message(fbid, message):
     reply_text=reply_text + ' :) '
     
     if type=='attachments':
-        pass
+        response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":"Joker"}})
     else:
         recevied_message=message['text']
         split_list=recevied_message.split('*')
