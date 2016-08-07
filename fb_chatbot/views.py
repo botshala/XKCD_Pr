@@ -85,7 +85,7 @@ def post_facebook_message(fbid, message):
     if type=='attachments':
         try:
             print('\n\n\n\n\n\n\n\n\n\n'+'HERE')
-            print('\n'+str(["attachments"][0]["payload"])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+            print('\n'+str(message["attachments"][0]["payload"])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
             img_url=message["attachments"][0]["payload"]["url"]
         except:
@@ -165,7 +165,7 @@ def index(request):
     return HttpResponse("Hello World"+' \n'+str(quote_search('Albert')))
 
 def test():
-    post_facebook_message('abhishek.sukumar.1','test message')
+    post_facebook_message('PradyumnSinh.1','test message')
 
 
 
