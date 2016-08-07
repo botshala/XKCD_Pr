@@ -67,7 +67,13 @@ def post_facebook_message(fbid, recevied_message):
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid 
         user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN} 
         user_details = requests.get(user_details_url, user_details_params).json() 
-        li=quote_search(recevied_message)
+        split_list=recevied_message.split('*')
+        query=''
+        if(split_list[0]==''):
+            query=query+split_list[1]
+        else:
+            query=query+split_list[0]
+        li=quote_search(query)
         joke_text = 'Yo '+user_details['first_name']+'..! ' + reply_text + '\n' +li
     except:
         joke_text = 'Yo ' + reply_text
