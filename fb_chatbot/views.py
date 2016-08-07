@@ -43,7 +43,7 @@ quotes_arr = [["Life isn’t about getting and having, it’s about giving and b
 
 
 def post_facebook_message(fbid, recevied_message):
-    reply_text = recevied_message + ':)'
+    reply_text = recevied_message + ':)' +'\n'
     joke_text=recevied_message
     try:
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid 
