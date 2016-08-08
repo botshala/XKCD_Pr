@@ -42,15 +42,7 @@ quotes_arr = [["Life isn’t about getting and having, it’s about giving and b
 ["Every child is an artist.  The problem is how to remain an artist once he grows up.", "Pablo Picasso"]]
 
 img_url='https://upload.wikimedia.org/wikipedia/en/e/e0/Iron_Man_bleeding_edge.jpg'
-img_msg ={
-    "attachment":{
-    "type":"image",
-    "payload":{
-    #"url":"http://thecatapi.com/api/images/get?format",
-    "url" : img_url
-    }
-    }
-}
+
 def quote_search(string):
     string=string.lower()
     random.shuffle(quotes_arr)
@@ -84,14 +76,16 @@ def post_facebook_message(fbid, message):
     
     if type=='attachments':
         try:
-            print(str(message["attachments"])+'\n\n')
-            print('\n\n\n\n\n\n\n\n\n\n'+'HERE')
+            print("                    ATTACHMENTS            \n"+"-------------------\n"+str(message["attachments"])+'\n\n')
+
+            print('\n\n\n\n\n\n\n\n\n\n'+' URL DERIVED FROM ATTAHCMENTS '+'\n')
             print('\n'+str(message["attachments"][0]["payload"]['url'])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
             img_url=str(message["attachments"][0]["payload"]['url']) +'/'
-            print("IMG URL" + img_url)
+            print("DERIVED IMG URL  \n" + img_url)
         except:
             pass
+        img_msg ={"attachment":{"type":"image","payload":{"url" : img_url}}}
         response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
         
     else:
