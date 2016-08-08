@@ -54,8 +54,7 @@ def quote_search(string):
 def post_facebook_message(fbid, message):
 
     type='text'
-    a=''
-    p=input('hey')
+    
     try:
         if 'attachments' in message:
             type='attachments'
