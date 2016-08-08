@@ -54,6 +54,8 @@ def quote_search(string):
 def post_facebook_message(fbid, message):
 
     type='text'
+    a=''
+    input(a)
     try:
         if 'attachments' in message:
             type='attachments'
@@ -88,7 +90,8 @@ def post_facebook_message(fbid, message):
         img_msg ={"attachment":{"type":"image","payload":{"url" : img_url}}}
         try: 
             response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
-            res=json.dumps({"recipient":{"id":fbid},"message":{"text":"Woh! Thats an Attachment"}})
+            res=json.dumps({"recipient":{"id":fbid},"message":{"text":"Woh Thats an Attachment"}})
+            print("\n\n\n\n\n\n\n\n\n\n\n COMPLETED")
             status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=res)
         except:
             response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":"IMAGE SENDING FAILED"}})
@@ -104,6 +107,7 @@ def post_facebook_message(fbid, message):
         li=quote_search(query)
         joke_text = reply_text + '\n' + li
         response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":joke_text}})
+        print(response_msg)
                    
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
    
