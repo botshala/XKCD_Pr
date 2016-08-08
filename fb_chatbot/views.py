@@ -55,7 +55,7 @@ def post_facebook_message(fbid, message):
 
     type='text'
     a=''
-    input(a)
+    p=input('hey')
     try:
         if 'attachments' in message:
             type='attachments'
