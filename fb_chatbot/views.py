@@ -88,6 +88,8 @@ def post_facebook_message(fbid, message):
         img_msg ={"attachment":{"type":"image","payload":{"url" : img_url}}}
         try: 
             response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
+            res=json.dumps({"recipient":{"id":fbid},"message":{"text":"Woh! Thats an Attachment"}})
+            status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=res)
         except:
             response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":"IMAGE SENDING FAILED"}})
         
