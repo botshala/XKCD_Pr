@@ -54,7 +54,8 @@ def quote_search(string):
 def post_facebook_message(fbid, message):
 
     type='text'
-    
+    post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
+   
     try:
         if 'attachments' in message:
             type='attachments'
