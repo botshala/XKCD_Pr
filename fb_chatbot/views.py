@@ -160,6 +160,14 @@ def index(request):
             stri=stri + '\n' +str(i)
     return HttpResponse("Hello World"+' \n'+str(quote_search('Albert')))
 
+def index1(request):
+    return HttpResponse("<html><head><style>p{color:green;background-color:cyan;padding:20px;margin:30px;position:absolute;border-radius:10px;}</style><title>HELLO!</title></head><body>Hello World<p><b>Hey World</b></p></body></html>")
+
+def  bye(request):
+    return HttpResponse("<html><head><style> p {color:green;border-radius:5px;background-color:maroon;position:absolute;padding:20px;}</style><title>GOODBYE</title></head><body><p>Bye Bye World</p><body></html>")
+
+def info(request):
+    return HttpResponse("I AM A CHATBOT")
 def test():
     post_facebook_message('PradyumnSinh.1','test message')
 
