@@ -81,12 +81,15 @@ def post_facebook_message(fbid, message):
             print('\n\n\n\n\n\n\n\n\n\n'+' URL DERIVED FROM ATTAHCMENTS '+'\n')
             print('\n'+str(message["attachments"][0]["payload"]['url'])+'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
-            img_url=str(message["attachments"][0]["payload"]['url']) +'/'
+            img_url=str(message["attachments"][0]["payload"]['url'])
             print("DERIVED IMG URL  \n" + img_url)
         except:
             pass
         img_msg ={"attachment":{"type":"image","payload":{"url" : img_url}}}
-        response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
+        try: 
+            response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
+        except:
+            response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":"IMAGE SENDING FAILED"}})
         
     else:
         recevied_message=message['text']
