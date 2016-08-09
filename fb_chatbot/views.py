@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 
 # Create your views here.
 
-PAGE_ACCESS_TOKEN = 'EAAEhOdh2ddsBAEDoF94Wir0bZCLCNNMS11ZCBEg3WPVgd39NbpbBZCFy1licJlwqzpc1piWb5ONnDrvSZAXSBxjMgCrkNuGJjkHK4tLZBRpJZAuYdfvweYzQKvH7W9Vag2iKZAPiajjpXPZAIPg9ohaNweUE9ttrjohir91rmXh8ugC8mkZA4zrWh'
+PAGE_ACCESS_TOKEN = 'EAAPcJptvRT0BABtxXhx7tKL6mfhCZAskXcfxqU9C4vrbJ3YZAf0urignhG7IHjnRqqGLIg1VZCjUXX5UTeQc3HqlNK6PTxpnMkNeYRZBmR8k5DYA1YxeVpiGpFizdewCIpE1ardG9gXYEwmM1zCZBqfEdRDZCep30VtXmf6sEwcQZDZD'
 VERIFY_TOKEN = '9871501397'
 
 
