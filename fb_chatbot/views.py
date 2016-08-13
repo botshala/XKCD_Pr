@@ -55,6 +55,31 @@ def quote_search(string):
             return text
     return str(quotes_arr[0][0])
 
+def emoji_search(search_string):
+    if not search_string:
+        return 'Emoji not found :('
+
+    if search_string in '*,random,anything'.split(','):
+        random.shuffle(emoji_arr)
+        return emoji_arr[0][0] + ' : '+emoji_arr[0][1]
+
+    tokens = re.sub(r"[^a-zA-Z0-9\s]",' ',search_string).lower().split()
+    print (tokens)
+
+    result_arr = []
+
+    for token in tokens:
+        for emoji,emoji_text in emoji_arr:
+            if token in emoji_text.lower():
+                result_arr.append(emoji)
+            
+    
+    if not result_arr:
+        return 'Emoji not found :('
+    else:
+        random.shuffle(result_arr)
+        return " ".join(result_arr[:5])
+
 def post_facebook_message(fbid, message):
 
     type='text'
@@ -110,6 +135,7 @@ def post_facebook_message(fbid, message):
             query=query+split_list[0]
         li=quote_search(query)
         joke_text = reply_text + '\n' + li
+        joke_text=joke_text + emoji_search(recevied_message)
         response_msg=json.dumps({"recipient":{"id":fbid},"message":{"text":joke_text}})
         print(response_msg)
                    
