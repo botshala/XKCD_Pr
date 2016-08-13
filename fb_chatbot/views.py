@@ -114,8 +114,8 @@ def post_facebook_message(fbid, message):
     else:
         id_list=id_list+[fbid]
         reply_text=reply_text + "Hey man! This is a chatbot.Tell us how you are feeling and we will respond the appropriate emoji.Also,you can enter the name of famous thinker and get a quoatation"
-        rep=json.dumps({"recipient":{"id":fbid},"message":{"text":joke_text}})
-        status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=rep)
+    rep=json.dumps({"recipient":{"id":fbid},"message":{"text":reply_text}})
+    status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=rep)
 
     if type=='attachments':
         try:
