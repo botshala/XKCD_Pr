@@ -22,8 +22,10 @@ def xkcd_search(text):
         print([obj[text],text])
         return [obj[text],text]
     else:
-        no=int(len(obj)/2)
-        url=obj[str(random.randint(1,no))]
+        #no=int(len(obj)/2)
+        no=1
+        #url=obj[str(random.randint(1,no))]
+        url=obj[str(1)]
         print("Hey")
         title=''
         for i in obj:
@@ -88,6 +90,7 @@ def post_facebook_message(fbid, message):
         
         
     else:
+        print("Here")
         recevied_message=message['text']
         li=xkcd_search(recevied_message)
         url=li[0]
