@@ -56,9 +56,12 @@ def post_facebook_message(fbid, message):
         reply_text=reply_text + 'Man'
 
     reply_text=reply_text + ' :) '
+
     id_file=open(os.path.join(os.path.dirname(__file__),'id.txt'),'r')
     id_list=json.loads(id_file.read())
     id_file.close()
+    print('\n\n\n\n\n\n',id_list,'\n\n\n\n\n')
+
     if fbid in id_list:
         pass
     else:
