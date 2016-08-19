@@ -17,6 +17,7 @@ VERIFY_TOKEN = '9871501397'
 def xkcd_search(text):
     f=open(os.path.join(os.path.dirname(__file__),"xkcd.txt"),'r')
     obj=json.loads(f.read())
+    print("--> XKCD _LIST",obj,'\n\n\n\n\n')
     f.close()
     if text in obj:
         print([obj[text],text])
@@ -25,7 +26,7 @@ def xkcd_search(text):
         #no=int(len(obj)/2)
         no=1
         #url=obj[str(random.randint(1,no))]
-        url=obj[str(1)]
+        url=obj['1']
         print("Hey")
         title=''
         for i in obj:
@@ -63,6 +64,7 @@ def post_facebook_message(fbid, message):
 
     id_file=open(os.path.join(os.path.dirname(__file__),'id.txt'),'r')
     id_list=json.loads(id_file.read())
+    print("-->",id_list,'\n\n\n\n\n\n')
     id_file.close()
     print('\n\n\n\n\n\n',id_list,'\n\n\n\n\n')
 
