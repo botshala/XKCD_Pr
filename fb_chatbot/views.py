@@ -8,7 +8,7 @@ from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
-
+id_list=[]
 PAGE_ACCESS_TOKEN = 'EAAWj8ACgQC4BAF7ZB7d6ynk6K1WM9SZATZA6CJQuybbQ7HOSEylClji4ZAsRLZC2fR5dpWFr24s3wjYNjaQB8dPZCi5mh4t9OfRYRi0ZCOmGlTAScUZCyQ9qWeTZAGTyClmFCJALrAdPP8mRnZARkysCkhNZAYKiw2mSf2TsOqtPQBG0QZDZD'
 VERIFY_TOKEN = '9871501397'
 
