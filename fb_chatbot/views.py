@@ -17,9 +17,9 @@ VERIFY_TOKEN = '9871501397'
 def xkcd_search(text):
     print("XKCD FILE --> \n",os.path.join(os.path.dirname(__file__),"xkcd.txt"),'\n\n\n\n')
     f=open(os.path.join(os.path.dirname(__file__),"xkcd.txt"),'r')
-    print('f.read()-->',f.read())
+    print('f.read() 3.-->',f.read())
     obj=json.loads(f.read())
-    print("--> XKCD _LIST",obj,'\n\n\n\n\n')
+    print("--> XKCD _LIST 4.",obj,'\n\n\n\n\n')
     f.close()
     if text in obj:
         print([obj[text],text])
@@ -40,6 +40,9 @@ def xkcd_search(text):
                     break
         print([url,title])
         return [url,title]
+
+
+
 def post_facebook_message(fbid, message):
     type='text'
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
