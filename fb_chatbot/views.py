@@ -91,6 +91,7 @@ def post_facebook_message(fbid, message):
     else:
         print("Here")
         recevied_message=message['text']
+        print(recevied_message)
         li=xkcd_search(recevied_message)
         url=li[0]
         title=li[1]
