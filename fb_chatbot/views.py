@@ -15,6 +15,7 @@ VERIFY_TOKEN = '9871501397'
 
 
 def xkcd_search(text):
+    print("This is the text -->'",text,'\n\n\n')
     f=open(os.path.join(os.path.dirname(__file__),'xkcd.txt'),'r')
     obj=json.loads(f.read())
     f.close()
