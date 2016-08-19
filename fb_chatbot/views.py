@@ -15,21 +15,14 @@ VERIFY_TOKEN = '9871501397'
 
 
 def xkcd_search(text):
-    print("XKCD FILE --> \n",os.path.join(os.path.dirname(__file__),"xkcd.txt"),'\n\n\n\n')
     f=open(os.path.join(os.path.dirname(__file__),'xkcd.txt'),'r')
-    #print('f.read() 3.-->',f.read())
     obj=json.loads(f.read())
-    print("--> XKCD _LIST 4.",obj,'\n\n\n\n\n')
     f.close()
     if text in obj:
-        print([obj[text],text])
         return [obj[text],text]
     else:
-        #no=int(len(obj)/2)
-        no=1
-        #url=obj[str(random.randint(1,no))]
-        url=obj['1']
-        print("Hey")
+        no=int(len(obj)/2)
+        url=obj[str(random.randint(1,no))]
         title=''
         for i in obj:
             if obj[i]==url:
@@ -69,9 +62,8 @@ def post_facebook_message(fbid, message):
 
     id_file=open(os.path.join(os.path.dirname(__file__),'id.txt'),'r')
     id_list=json.loads(id_file.read())
-    print("-->1.",id_list,'\n\n\n\n\n\n')
     id_file.close()
-    print('\n\n\n\n\n\n--> 2.',id_list,'\n\n\n\n\n')
+    
 
     if fbid in id_list:
         pass
@@ -79,7 +71,6 @@ def post_facebook_message(fbid, message):
         id_list=id_list+[fbid]
         id_file=open(os.path.join(os.path.dirname(__file__),"id.txt"),'w')
         id_file.write(json.dumps(id_list))
-        print('3-->',id_list,'\n\n\n\n\n\n')
         id_file.close()
         reply_text=reply_text + "\n This is a chatbot.You will get an XKCD comic strip based on your request"
 
