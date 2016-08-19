@@ -18,11 +18,19 @@ def xkcd_search(text):
     obj=json.loads(f.read())
     f.close()
     if text in obj:
-        return obj[text]
+        return [obj[text],text]
     else:
         no=len(obj)/2
-        return obj[str(random.randint(1,no))]
-
+        url=obj[str(random.randint(1,no))]
+        title=''
+        for i in obj:
+            if obj[i]==url:
+                try:
+                    a=int(i)
+                except:
+                    title=i
+                    break
+        return [url,title]
 def post_facebook_message(fbid, message):
     type='text'
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
@@ -68,7 +76,11 @@ def post_facebook_message(fbid, message):
         
     else:
         recevied_message=message['text']
-        url=xkcd_search(recevied_message)
+        li=xkcd_search(recevied_message)
+        url=li[0]
+        title=li[1]
+        text_res=json.dumps({"recipient":{"id":fbid},"message":{"text":title}})
+        status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=text_res)
         img_msg={"attachment":{"type":"image","payload":{"url":url}}}
         response_msg=json.dumps({"recipient":{"id":fbid},"message":img_msg})
                    
