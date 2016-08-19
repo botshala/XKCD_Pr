@@ -8,7 +8,10 @@ from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
-id_list=[]
+id_file=open(os.path.join(os.path.dirname(__file__),'id.txt'),'r')
+id_list=json.loads(id_file.read())
+id_file.close()
+
 PAGE_ACCESS_TOKEN = 'EAAWj8ACgQC4BAF7ZB7d6ynk6K1WM9SZATZA6CJQuybbQ7HOSEylClji4ZAsRLZC2fR5dpWFr24s3wjYNjaQB8dPZCi5mh4t9OfRYRi0ZCOmGlTAScUZCyQ9qWeTZAGTyClmFCJALrAdPP8mRnZARkysCkhNZAYKiw2mSf2TsOqtPQBG0QZDZD'
 VERIFY_TOKEN = '9871501397'
 
@@ -58,7 +61,10 @@ def post_facebook_message(fbid, message):
     if fbid in id_list:
         pass
     else:
-        id_list.append(fbid)
+        id_list=id_list+[fbid]
+        f=open(os.path.join(os.path.dirname(__file__),"xkcd.txt"),'w')
+        f.write(json.dumps(id_list))
+        f.close()
         reply_text=reply_text + "\n This is a chatbot.You will get an XKCD comic strip based on your request"
 
     rep=json.dumps({"recipient":{"id":fbid},"message":{"text":reply_text}})

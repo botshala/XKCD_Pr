@@ -26,7 +26,7 @@ def fetch(domain):
 		title=obj["title"]
 		img_url=obj["img"]
 		print(title+" : "+img_url)
-		grid[title]=img_url
+		grid[title.lower()]=img_url
 		grid[total_comics]=img_url
 		total_comics=total_comics-1;
 		#print(grid)
