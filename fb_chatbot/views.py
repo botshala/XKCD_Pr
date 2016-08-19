@@ -23,6 +23,7 @@ def xkcd_search(text):
     else:
         no=len(obj)/2
         url=obj[str(random.randint(1,no))]
+        print("Hey")
         title=''
         for i in obj:
             if obj[i]==url:
@@ -64,6 +65,7 @@ def post_facebook_message(fbid, message):
         id_list=id_list+[fbid]
         f=open(os.path.join(os.path.dirname(__file__),"xkcd.txt"),'w')
         f.write(json.dumps(id_list))
+        print(id_list+'\n\n\n\n\n\n')
         f.close()
         reply_text=reply_text + "\n This is a chatbot.You will get an XKCD comic strip based on your request"
 
