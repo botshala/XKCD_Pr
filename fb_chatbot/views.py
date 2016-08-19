@@ -19,6 +19,7 @@ def xkcd_search(text):
     obj=json.loads(f.read())
     f.close()
     if text in obj:
+        print([obj[text],text])
         return [obj[text],text]
     else:
         no=int(len(obj)/2)
@@ -32,6 +33,7 @@ def xkcd_search(text):
                 except:
                     title=i
                     break
+        print([url,title])
         return [url,title]
 def post_facebook_message(fbid, message):
     type='text'
